@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">N11CaseStudy</string>
+    <string name="welcome">"Welcome "</string>
 </resources>
