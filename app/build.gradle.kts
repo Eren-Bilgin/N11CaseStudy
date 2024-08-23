@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.dagger.hilt.android)
+    alias(libs.plugins.kotlin.kapt)
+
 }
 
 android {
@@ -60,6 +63,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
+    implementation(libs.google.dagger.hilt.android)
+    kapt(libs.google.dagger.hilt.android.compiler)
     implementation(libs.squareup.retrofit2)
     implementation(libs.squareup.retrofit2.converter.gson)
     androidTestImplementation(libs.androidx.junit)
@@ -68,4 +73,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+kapt {
+    correctErrorTypes = true
 }
