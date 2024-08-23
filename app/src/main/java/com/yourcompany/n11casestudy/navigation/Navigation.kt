@@ -16,13 +16,14 @@ fun NavigationHost() {
         navController = navController, startDestination = Screens.HomeScreen.route
     ) {
         composable(Screens.HomeScreen.route) {
-            HomeScreen(navigate = {profileName ->navController.navigate("${Screens.ProfileScreen.route}/$profileName")})
+            HomeScreen(navigate = { profileName -> navController.navigate("${Screens.ProfileScreen.route}/$profileName") })
         }
         composable(
             route = "${Screens.ProfileScreen.route}/{profileName}",
             arguments = listOf(navArgument("profileName") { type = NavType.StringType })
-        ){
-            ProfileScreen(profileName = it.arguments?.getString("profileName"),onNavigateBack = { navController.popBackStack() })
+        ) {
+            ProfileScreen(profileName = it.arguments?.getString("profileName"),
+                onNavigateBack = { navController.popBackStack() })
         }
     }
 }
