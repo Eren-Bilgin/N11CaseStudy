@@ -1,4 +1,4 @@
-package com.yourcompany.n11casestudy.model
+package com.yourcompany.n11casestudy.data.model
 
 import com.google.gson.annotations.SerializedName
 

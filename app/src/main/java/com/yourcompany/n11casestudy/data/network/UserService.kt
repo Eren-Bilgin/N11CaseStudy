@@ -1,13 +1,13 @@
-package com.yourcompany.n11casestudy.network
+package com.yourcompany.n11casestudy.data.network
 
-import com.yourcompany.n11casestudy.model.UserSearchResult
+import com.yourcompany.n11casestudy.data.model.UserSearchResult
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ApiInterface {
+interface UserService {
     @GET("search/users")
-    fun searchUsers(
+    suspend fun searchUsers(
         @Query("q") query: String
     ): Response<UserSearchResult>
 }
