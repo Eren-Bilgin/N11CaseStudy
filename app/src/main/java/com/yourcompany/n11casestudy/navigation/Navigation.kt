@@ -6,8 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.yourcompany.n11casestudy.screens.HomeScreen
-import com.yourcompany.n11casestudy.screens.ProfileScreen
+import com.yourcompany.n11casestudy.screens.home.HomeScreen
+import com.yourcompany.n11casestudy.screens.profile.ProfileScreen
 
 @Composable
 fun NavigationHost() {
