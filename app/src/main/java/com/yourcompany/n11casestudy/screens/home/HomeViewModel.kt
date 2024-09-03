@@ -25,25 +25,24 @@ class HomeViewModel @Inject constructor(
     var search by mutableStateOf("")
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val uiState: StateFlow<HomeUiState> = snapshotFlow { search }
-        .flatMapLatest { query ->
-            flow {
-                if (query.isNotEmpty()) {
-                    emit(HomeUiState.Loading)
-                    delay(2000)
-                    val users = repository.getUsers(query)
-                    emit(HomeUiState.Success(users.items.orEmpty()))
-                } else {
-                    emit(HomeUiState.Init)
-                }
+    val uiState: StateFlow<HomeUiState> = snapshotFlow { search }.flatMapLatest { query ->
+        flow {
+            if (query.isNotEmpty()) {
+                emit(HomeUiState.Loading)
+                delay(2000)
+                val users = repository.getUsers(query)
+                emit(HomeUiState.Success(users.items.orEmpty()))
+            } else {
+                emit(HomeUiState.Init)
             }
-        }.catch {
-            HomeUiState.Error
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = HomeUiState.Init
-        )
+        }
+    }.catch {
+        emit(HomeUiState.Error)
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = HomeUiState.Init
+    )
 
     fun setSearchName(newName: String) {
         search = newName
