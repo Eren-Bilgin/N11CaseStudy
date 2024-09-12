@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.yourcompany.n11casestudy.data.datasource.PagingSource
 import com.yourcompany.n11casestudy.data.model.User
-import com.yourcompany.n11casestudy.data.network.UserService
+import com.yourcompany.n11casestudy.data.service.UserService
 import kotlinx.coroutines.flow.Flow
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

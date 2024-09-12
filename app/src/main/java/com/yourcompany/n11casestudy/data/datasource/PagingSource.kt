@@ -3,7 +3,7 @@ package com.yourcompany.n11casestudy.data.datasource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.yourcompany.n11casestudy.data.model.User
-import com.yourcompany.n11casestudy.data.network.UserService
+import com.yourcompany.n11casestudy.data.service.UserService
 
 class PagingSource(
     private val service: UserService, private val query: String

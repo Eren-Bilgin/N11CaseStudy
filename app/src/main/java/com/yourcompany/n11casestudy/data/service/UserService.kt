@@ -1,4 +1,4 @@
-package com.yourcompany.n11casestudy.data.network
+package com.yourcompany.n11casestudy.data.service
 
 import com.yourcompany.n11casestudy.data.model.UserDetail
 import com.yourcompany.n11casestudy.data.model.UserSearchResult
