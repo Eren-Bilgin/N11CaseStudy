@@ -18,11 +18,12 @@ class UserRepository @Inject constructor() {
         OkHttpClient.Builder().readTimeout(20, TimeUnit.SECONDS)
             .connectTimeout(20, TimeUnit.SECONDS).build()
     ).addConverterFactory(GsonConverterFactory.create()).build().create(UserService::class.java)
+
+    suspend fun getUsersDetail(query: String) = retrofit.usersProfileDetail(userName = query)
     fun getUsersByPage(query: String): Flow<PagingData<User>> {
         return Pager(PagingConfig(pageSize = 30), pagingSourceFactory = {
             PagingSource(retrofit, query)
         }).flow
     }
-    suspend fun getUsers(query: String) = retrofit.searchUsers(query = query)
-    suspend fun getUsersDetail(query: String) = retrofit.usersProfileDetail(userName = query)
+
 }
