@@ -14,4 +14,5 @@ class UserRepository @Inject constructor() {
     ).addConverterFactory(GsonConverterFactory.create()).build().create(UserService::class.java)
 
     suspend fun getUsers(query: String) = retrofit.searchUsers(query = query)
+    suspend fun getUsersDetail(query: String) = retrofit.usersProfileDetail(userName = query)
 }

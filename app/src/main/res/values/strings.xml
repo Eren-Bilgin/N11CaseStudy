@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">N11CaseStudy</string>
-    <string name="welcome">"Welcome "</string>
+    <string name="home_title">"GITHUB"</string>
+    <string name="back_button">BACK</string>
+    <string name="followers_value">FOLLOWERS\n</string>
+    <string name="following_value">FOLLOWING\n</string>
+    <string name="error_message">Oops! Something went wrong.</string>
 </resources>
