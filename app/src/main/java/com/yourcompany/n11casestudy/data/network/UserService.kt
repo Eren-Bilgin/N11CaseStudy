@@ -8,8 +8,8 @@ import retrofit2.http.Query
 
 interface UserService {
     @GET("search/users")
-    suspend fun searchUsers(
-        @Query("q") query: String
+    suspend fun searchUsersByPage(
+        @Query("page") page: Int, @Query("q") query: String
     ): UserSearchResult
 
     @GET("users/{username}")

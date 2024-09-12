@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class User(
     val login: String?,
-    val id: Long?,
+    val id: Long,
     val url: String?,
     val type: String?,
     val score: Double?,
