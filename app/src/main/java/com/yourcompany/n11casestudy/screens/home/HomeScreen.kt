@@ -26,6 +26,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,6 +37,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
@@ -45,22 +50,31 @@ import com.yourcompany.n11casestudy.R
 import com.yourcompany.n11casestudy.data.model.User
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigate: (String) -> Unit) {
+fun HomeScreen(
+    viewModel: HomeViewModel = hiltViewModel(),
+    navigate: (String) -> Unit
+) {
     val userList = viewModel.uiState.collectAsLazyPagingItems()
 
-    Column {
-        SearchBar(query = viewModel.search,
+    Column(
+        modifier = Modifier
+    ) {
+        SearchBar(
+            query = viewModel.search,
             onQueryChange = { viewModel.setSearchName(it) },
             onSearch = {},
             placeholder = {
                 Text(text = "Search Name")
             },
-
             active = false,
             onActiveChange = {},
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(
+                    top = 16.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                ),
             content = {},
             trailingIcon = {
                 if (viewModel.search.isNotEmpty()) {
@@ -98,9 +112,9 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigate: (String) ->
                 }
             }
         }
-
     }
 }
+
 
 @Composable
 fun HomeContent(
@@ -110,7 +124,8 @@ fun HomeContent(
         content = {
             items(loginList.itemCount, key = loginList.itemKey { it.id }) {
                 val user = loginList[it]
-                ListItem(modifier = Modifier.clickable { navigate(user?.login.orEmpty()) },
+                ListItem(
+                    modifier = Modifier.clickable { navigate(user?.login.orEmpty()) },
                     headlineContent = {
                         Text(text = user?.login.orEmpty())
                     },
@@ -132,4 +147,39 @@ fun HomeContent(
             start = 8.dp, top = 4.dp, end = 8.dp, bottom = 4.dp
         )
     )
+}
+
+
+@Preview(showBackground = true)
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun PreviewHomeScreen() {
+    var query by remember { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier.padding(
+            top = 16.dp,
+            start = 16.dp,
+            end = 16.dp
+        )
+    ) {
+        SearchBar(
+            query = query,
+            onQueryChange = { query = it },
+            onSearch = {},
+            placeholder = { Text("Search Name") },
+            active = false,
+            onActiveChange = {},
+            modifier = Modifier
+                .fillMaxWidth(),
+            trailingIcon = {
+                if (query.isNotEmpty()) {
+                    IconButton(onClick = { query = "" }) {
+                        Icon(imageVector = Icons.Default.Clear, contentDescription = "Clear")
+                    }
+                }
+            },
+            content = {}
+        )
+    }
 }
